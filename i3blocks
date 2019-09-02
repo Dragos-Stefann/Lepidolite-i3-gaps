@@ -1,0 +1,85 @@
+# ___ _____   _     _            _
+#|_ _|___ /  | |__ | | ___   ___| | _____
+# | |  |_ \  | '_ \| |/ _ \ / __| |/ / __|
+# | | ___) | | |_) | | (_) | (__|   <\__ \
+#|___|____/  |_.__/|_|\___/ \___|_|\_\___/
+# i3blocks config file
+
+command=/usr/lib/i3blocks/$BLOCK_NAME
+separator_block_width=14
+markup=none
+
+#full_text=|
+#align=center
+#separator=false
+#separator_block_width=0
+#color=#c6b367
+#markup=pango
+
+#modules
+[updates]
+command=/home/doge/scripts/update
+interval=1500
+label=
+color=#20564b
+
+[kernel]
+command=uname -r
+interval=9999999999999999 #change to 1, if new kernel install, and put back to 999....
+label=:
+color=#c6b367
+separator=true
+
+[weather]
+command=/home/doge/scripts/IconicWeather.sh "|RO|RO010|BUCURESTI"
+interval=1800
+color=#f4720e
+
+[volume]
+#label=VOL
+label=
+instance=Master
+#instance=PCM
+interval=once
+signal=10
+color=#070bf4
+separator=true
+
+[disk]
+label=(~)
+command=/usr/lib/i3blocks/disk $HOME
+interval=30
+color=#cc0000
+
+[memory]
+command=/home/doge/.config/i3/mem
+label=
+interval=10
+separator=true
+color=#e7f707
+
+[gpu_temp]
+command=sensors amdgpu-pci-0100 | awk '/^temp1/ {print $2}'
+interval=10
+label=(GPU): 
+separator=true
+color=#7ae292
+
+[cpu_usage]
+label=
+interval=10
+min_width=CPU: 100.00%
+color=#cc6666
+separator=true
+
+[temperature]
+command=sensors pch_skylake-virtual-0 | awk '/^temp1/ {print $2}'
+label=:
+interval=10
+color=#66ffff
+
+[time]
+label=
+command=date '+%Y-%m-%d %H:%M'
+interval=1
+color=#d100ed
