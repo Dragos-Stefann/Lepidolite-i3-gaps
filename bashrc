@@ -1,3 +1,4 @@
+#IF you are using bash, don't use this config, it's useless
 # ____    _    ____  _   _ ____   ____
 #| __ )  / \  / ___|| | | |  _ \ / ___|
 #|  _ \ / _ \ \___ \| |_| | |_) | |
