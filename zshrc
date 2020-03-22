@@ -23,20 +23,18 @@
 
 ### That's it, after you clone this I recommend you to delete the useless comments, if you want to be a true minimalist. ###
 
-# Enable colors and change prompt
+# Enable colors 
 autoload -U colors && colors
-# Left prompt 
-#Uncomment if you want an arrow as a prompt, this requiers font awesome.
 
-PS1="%{$fg[green]%}%{%G%} %{$fg[magenta]%}%~%  "
+#Set prompt
 
-#Uncomment the line bellow if you preffer a classic prompt [foo@bar]~$
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir) 
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator vcs vi-mode)
 
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-# Right prompt
-#RPROMPT=WORK IN PROGRESS
-#This will probably be a script that shows which branch im working in.
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_ETC_ICON=''
 
 #History in cache directory
 HISTSIZE=10000
@@ -63,25 +61,26 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
+#function zle-keymap-select {
+#  if [[ ${KEYMAP} == vicmd ]] ||
+#     [[ $1 = 'block' ]]; then
+#    echo -ne '\e[1 q'
+#  elif [[ ${KEYMAP} == main ]] ||
+#       [[ ${KEYMAP} == viins ]] ||
+#       [[ ${KEYMAP} = '' ]] ||
+#       [[ $1 = 'beam' ]]; then
+#    echo -ne '\e[5 q'
+#  fi
+#}
 zle -N zle-keymap-select
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
-zle -N zle-line-init
+#zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
 
 # Use lf to switch directories and bind it to ctrl-o, you can set this to your preffered file manager, just change the lfcd variable.
 lfcd () {
@@ -106,8 +105,7 @@ bindkey '^e' edit-command-line
 #Implement reverse search
 bindkey '^R' history-incremental-search-backward
 
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/syntax/zsh-syntax-highlighting.zsh 2>/dev/null
-# If you want syntax highlighting, you need to clone this [ https://github.com/zsh-users/zsh-syntax-highlighting.git ] and edit the source however you like,
-#for example if you cloned this in your $HOME directory, you will have something like this:
-#source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+# Load the zsh theme 
+source  ~/powerlevel9k/powerlevel9k.zsh-theme 2>/dev/null
+# Load syntax highlighting plugin
+source ~/zsh-syntax-highlighting/syn.zsh 2>/dev/null
