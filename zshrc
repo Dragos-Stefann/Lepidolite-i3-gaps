@@ -31,6 +31,8 @@ autoload -U colors && colors
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir) 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator vcs vi-mode)
 
+#You need patched powerline fonts for this
+
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
